@@ -7,8 +7,8 @@
  */
 
 $host = "localhost";
-$user = "shovon";
-$dbPassword = "ucbmpw12";
+$user = "******";
+$dbPassword = "******";
 $database = "ajax";
 $port = "3306";
 
