@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Learning AJAX</title>
+
+    <link rel="stylesheet" type="text/css" href="../lib/bootstrap/css/bootstrap.min.css">
+
+    <script type="text/javascript">
+
+        /* Some Info
+
+         readyState Properties:
+
+         0: Server Request Not initialized
+         1: Server Connection Established
+         2: Request Received
+         3: Processing Request
+         4: Request Finished and Response is Ready
+
+         status Properties:
+
+         200: OK
+         403: forbidden
+         404: Page Not Found
+         500: Server Error
+
+         */
+
+
+        function ajax_func(userInput) {
+
+            var xmlhttp = new XMLHttpRequest();
+//            var userInput = document.querySelector('#userInput').value;
+
+
+            xmlhttp.onreadystatechange = function () {
+
+                if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+                    var receiver = document.querySelector('#ShowResponse');
+                    receiver.innerHTML = xmlhttp.responseText;
+                }
+
+            };
+            xmlhttp.open('GET', 'processAJAX.php?var=' + userInput, true);
+            xmlhttp.send();
+        }
+
+
+    </script>
+</head>
+<body>
+
+<!--<div id="getData">-->
+<!--The Data Receiver Div-->
+<!--</div>-->
+<div class="help-block text-center">
+    <h1>Enter Your Favourite Color</h1>
+</div>
+
+<div class="col-md-4 col-md-offset-4">
+    <div class="input-group input-group-lg">
+        <span class="input-group-addon" id="basic-addon1">Color</span>
+        <input id="userInput" type="text" class="form-control" placeholder="Enter Color" aria-describedby="basic-addon1"
+               onkeyup="ajax_func(this.value)">
+    </div>
+
+    <!-- We Dont Need Button anymore :D -->
+    <!--<br>-->
+    <!--<div>-->
+    <!--<button class="btn btn-info" onclick="ajax_func()">Check Now!!</button>-->
+    <!--</div>-->
+    <br>
+    <div id="ShowResponse" class="help-block bg-warning">
+
+    </div>
+
+
+</div>
+
+</body>
+</html>
